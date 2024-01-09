@@ -1,0 +1,14 @@
+{
+    "name": "chuchei/aguilasdel-saber",
+    "autoload": {
+        "psr-4": {
+            "Chuchei\\AguilasdelSaber\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "bryan rojas"
+        }
+    ],
+    "require": {}
+}

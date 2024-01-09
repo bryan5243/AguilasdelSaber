@@ -1,0 +1,19 @@
+{
+  "name": "aguilasdelsaber",
+  "version": "1.0.0",
+  "description": "sistema de matriculacion paralas aguilas del saber",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryan5243/AguilasdelSaber.git"
+  },
+  "author": "bryan rojas - arnold sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryan5243/AguilasdelSaber/issues"
+  },
+  "homepage": "https://github.com/bryan5243/AguilasdelSaber#readme"
+}
