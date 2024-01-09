@@ -1,0 +1,19 @@
+body {
+    background-image: url(img/Diseño.png);
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  
+    
+  }
+
+  .btn-show-pass {
+    border: none;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+  }
+  .btn-show-pass .icon {
+    transition: all .3s;
+}
