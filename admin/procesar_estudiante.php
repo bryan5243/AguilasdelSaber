@@ -34,20 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insertar datos del estudiante
         $stmtEstudiante = $pdo->prepare('INSERT INTO Estudiante (cedula, apellidos, nombres, lugar_nacimiento, residencia, direccion, sector, fecha_nacimiento, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $stmtEstudiante->execute([$cedulaEstudiante, $apellidosEstudiante, $nombresEstudiante, $lugarNacimientoEstudiante, $residenciaEstudiante, $direccionEstudiante, $sectorEstudiante, $fechaNacimientoEstudiante, $fotoEstudiante]);
-
+        
         $idEstudiante = $pdo->lastInsertId();
+        $_SESSION['id_estudiante'] = $idEstudiante;
 
-        // Insertar datos del papá
+        // In$_SESSION['id_estudiante'] = $pdo->lastInsertId();sertar datos del papá
         $stmtPapa = $pdo->prepare('INSERT INTO Papa (id_estudiante, cedula, apellidos_nombres, direccion, ocupacion, telefono, correo, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
         $stmtPapa->execute([$idEstudiante, $cedulaPapa, $apellidosNombresPapa, $direccionPapa, $ocupacionPapa, $telefonoPapa, $correoPapa, $fotoPapa]);
 
         // Insertar datos de la mamá
         $stmtMama = $pdo->prepare('INSERT INTO Mama (id_estudiante, cedula, apellidos_nombres, direccion, ocupacion, telefono, correo, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
         $stmtMama->execute([$idEstudiante, $cedulaMama, $apellidosNombresMama, $direccionMama, $ocupacionMama, $telefonoMama, $correoMama, $fotoMama]);
-
+        
         $pdo->commit();
 
-        echo json_encode(['success' => true, 'message' => 'Datos guardados correctamente.']);
+        // Agregar la URL de redirección a la respuesta JSON
+        header("Location: representante.php");
+        
     } catch (Exception $e) {
         $pdo->rollBack();
 
@@ -56,3 +59,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(['success' => false, 'message' => 'Método no permitido']);
 }
+?>

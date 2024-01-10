@@ -1,0 +1,6 @@
+/* Agregar líneas entre filas */
+
+.row {
+    margin-bottom: 15px; /* Espacio entre las filas */
+    border-bottom: 1px solid #ccc; /* Línea entre filas */
+}
