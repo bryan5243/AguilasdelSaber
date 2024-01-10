@@ -12,7 +12,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
         <div class="top">
             <div class="logo">
                 <img src="../img/logo23.png">
-                <h2 class="logo-name"><span class="divina">AGUILAS</span> <span class="mise">DEL SABER</span></h2>
+                <h2 class="logo-name"><span class="divina">LAS AGUILAS</span> <span class="mise">DEL SABER</span></h2>
             </div>
             <div class="close" id="close-btn">
                 <span class="material-icons-sharp">close</span>

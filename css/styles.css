@@ -612,7 +612,7 @@ main .recent-order a {
 @media screen and (max-width:768px) {
     .container {
         width: 100%;
-        grid-template-columns: 1fr;
+        grid-template-columns: 30rem;
     }
 
 
@@ -670,8 +670,8 @@ main .recent-order a {
 
 
     .right {
-        width: 94%;
-        margin: 0 auto 4rem;
+        width: 100%;
+        margin: 0 auto 2rem;
     }
 
     .right .top {
@@ -692,12 +692,18 @@ main .recent-order a {
     .right .top .theme-toggler {
         width: 4.4rem;
         position: absolute;
-        left: 66%;
+        left:65%;
 
     }
 
     .right .profile .info {
         display: none;
+
+    }
+
+    .profile-photo {
+margin-right: 20px;
+
     }
 
     .right .top button {
@@ -712,5 +718,23 @@ main .recent-order a {
     .right .top button span {
         font-size: 2rem;
     }
+
+    main .insights {
+        grid-template-columns: 33rem;
+        gap: 0;
+    }
+
+    main .recent-order {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 8.8rem;
+    }
+
+    main .recent-order table {
+        width: 83vw;
+    }
+
 
 }

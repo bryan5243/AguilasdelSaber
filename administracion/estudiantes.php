@@ -65,10 +65,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
     }
 
     @media screen and (max-width:768px) {
-        main {
-            position: fixed;
-        }
-
+      
         aside {
             position: fixed;
             top: 0;
