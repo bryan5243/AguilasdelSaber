@@ -14,10 +14,6 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
 ?>
 
 <style>
-    body {
-        background-color: #f8f9fa;
-    }
-
     .container {
         margin-top: 50px;
     }
@@ -34,7 +30,8 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
 <main>
 
     <div class="container">
-        <form id="formularioFamilia" action="../controller/procesar_estudiante.php" method="post" enctype="multipart/form-data">
+        <form id="formularioFamilia" action="../controller/procesar_estudiante.php" method="post"
+            enctype="multipart/form-data">
             <h2 class="mb-4">Formulario Estudiantil</h2>
 
             <!-- Datos Estudiante -->
@@ -190,16 +187,15 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
         <div id="alerta" class="position-fixed top-0 end-0 p-3" style="z-index: 11">
             <!-- Aquí se mostrarán las alertas -->
         </div>
-
+    </div>
 
 
 </main>
 <?php
 include_once "./header.php";
 ?>
+<script src="../js/menu.js"></script>
+<script src="../js/tema.js"></script>
 <script src="../js/formulario2.js"></script> <!-- Ajusta la ruta según tu estructura de archivos -->
 
 <!-----------------------------Fin del main------------------------------->
-
-<script src="../js/tema.js"></script>
-<script src="../js/activo.js"></script>

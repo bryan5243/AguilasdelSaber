@@ -1,13 +1,8 @@
 <?php
-// Evitar el almacenamiento en caché
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+
 if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['rol'])) {
-    session_destroy();
-
-
     header("location: login.php");
+    exit();
 }
 
 ?>
@@ -21,12 +16,11 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
             </div>
             <div class="close" id="close-btn">
                 <span class="material-icons-sharp">close</span>
-
             </div>
         </div>
 
         <div class="sidebar">
-            <a href="dashboard.php" class="active">
+            <a href="dashboard.php" class="default-active">
                 <span class="las la-home"></span>
                 <h3>Inicio</h3>
             </a>
@@ -53,7 +47,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
                 <h3>Opciones</h3>
             </a>
 
-            <a href="../model/cerrar_session.php">
+            <a href="../model/cerrar_session.php"  class="logout-button">
                 <span class="material-icons-sharp">logout</span>
                 <h3>Salir</h3>
             </a>

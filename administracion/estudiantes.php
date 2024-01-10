@@ -63,6 +63,31 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
     .hand-cursor {
         cursor: pointer;
     }
+
+    @media screen and (max-width:768px) {
+        main {
+            position: fixed;
+        }
+
+        aside {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            /* Ancho del menú lateral */
+            overflow-y: auto;
+        }
+    }
+
+
+    #menu-btn {
+        cursor: pointer;
+    }
+
+    #close-btn {
+        cursor: pointer;
+    }
 </style>
 <link rel="stylesheet" href="../src/datables/DataTables-1.13.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="../src/datables//Responsive-2.4.1/css/responsive.dataTables.min.css">
@@ -160,26 +185,28 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
 <?php
 include_once "./header.php";
 ?>
-< !-----------------------------Fin del main------------------------------->
-    <script src="../js/tema.js"></script>
-    <script src="../js/activo.js"></script>
 
-    <script src="../src/datables/jquery-3.5.1.js"></script>
+<script src="../js/tema.js"></script>
+<script src="../js/activo.js"></script>
+<script src="../js/menu.js"></script>
 
-    <script src="../src/datables/DataTables-1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="../src/datables/Responsive-2.4.1/js/dataTables.responsive.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            var table = $('#example').DataTable({
-                responsive: true,
-                autoWhidth: true,
-                language: {
-                    url: '../src/datables/español.json',
-                },
-            });
+<script src="../src/datables/jquery-3.5.1.js"></script>
+
+<script src="../src/datables/DataTables-1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="../src/datables/Responsive-2.4.1/js/dataTables.responsive.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#example').DataTable({
+            responsive: true,
+            autoWidth: true,
+            language: {
+                url: '../src/datables/español.json',
+            },
         });
-    </script>
+    });
+</script>
 
 <script>
     // JavaScript to handle button click and submit the form

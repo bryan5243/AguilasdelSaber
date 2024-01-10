@@ -529,7 +529,7 @@ main .recent-order a {
 
 
 
-@media screen and (width:1600px) {
+@media screen and (max-width:1600px) {
     .container {
         display: grid;
         width: 100%;
@@ -544,7 +544,7 @@ main .recent-order a {
 }
 
 
-@media screen and (width:1366px) {
+@media screen and (max-width:1366px) {
     .container {
         display: grid;
         width: 100%;
@@ -552,32 +552,59 @@ main .recent-order a {
         gap: 1.8rem;
         grid-template-columns: 14rem 80rem;
     }
+
     aside .sidebar a span {
         font-size: 2rem;
     }
-
-
-
 
 }
 
 
 
+@media screen and (max-width:1200px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 8rem 150rem;
+    }
+
+    aside .logo h2 {
+        display: none;
+    }
+
+    aside .sidebar h3 {
+        display: none;
+    }
+
+    aside .sidebar a {
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+
+    }
+
+    main .insights {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    main .recent-order {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 8.8rem;
+    }
+
+    main .recent-order table {
+        width: 83vw;
+    }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -587,6 +614,7 @@ main .recent-order a {
         width: 100%;
         grid-template-columns: 1fr;
     }
+
 
     aside {
         position: fixed;
@@ -636,7 +664,7 @@ main .recent-order a {
     }
 
     main {
-        margin-top: 8rem;
+        margin-top: 4rem;
         padding: 0 1rem;
     }
 
@@ -684,4 +712,5 @@ main .recent-order a {
     .right .top button span {
         font-size: 2rem;
     }
+
 }
