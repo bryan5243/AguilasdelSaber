@@ -12,149 +12,192 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
 
 
 ?>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        margin-top: 20px;
+    }
+</style>
 <!----------------Final del menu------------------->
 <main>
 
-    <div class="container mt-5">
-        <h2 class="mb-4">Formulario 2</h2>
-        <!-- Alerta flotante para campos vacíos -->
-        <div class="alert alert-danger alert-dismissible fade show" id="emptyFieldsAlert" role="alert">
-            <strong>¡Recuerde!</strong> Todos los campos deben estar llenos.
-            <!-- Usa 'button' en lugar de 'submit' para el botón de cierre -->
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="container">
+        <form id="formularioFamilia" action="../controller/procesar_estudiante.php" method="post" enctype="multipart/form-data">
+            <h2 class="mb-4">Formulario Estudiantil</h2>
+
+            <!-- Datos Estudiante -->
+            <h3>Datos del Estudiante</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cedula_estudiante">1. Cédula del Estudiante</label>
+                        <input type="text" class="form-control" id="cedula_estudiante" name="cedula_estudiante"
+                            pattern="[0-9]*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos_estudiante">2. Apellidos del Estudiante</label>
+                        <input type="text" class="form-control" id="apellidos_estudiante" name="apellidos_estudiante"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombres_estudiante">3. Nombres del Estudiante</label>
+                        <input type="text" class="form-control" id="nombres_estudiante" name="nombres_estudiante"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lugar_nacimiento_estudiante">4. Lugar de Nacimiento del Estudiante</label>
+                        <input type="text" class="form-control" id="lugar_nacimiento_estudiante"
+                            name="lugar_nacimiento_estudiante" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="foto_estudiante">5. Foto del Estudiante</label>
+                        <input type="file" class="form-control" id="foto_estudiante" name="foto_estudiante">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="residencia_estudiante">6. Residencia del Estudiante (Ciudad)</label>
+                        <input type="text" class="form-control" id="residencia_estudiante" name="residencia_estudiante"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion_estudiante">7. Dirección del Estudiante</label>
+                        <input type="text" class="form-control" id="direccion_estudiante" name="direccion_estudiante"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sector_estudiante">8. Sector donde vive </label>
+                        <input type="text" class="form-control" id="sector_estudiante" name="sector_estudiante"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_nacimiento_estudiante">9. Fecha de Nacimiento del Estudiante</label>
+                        <input type="date" class="form-control" id="fecha_nacimiento_estudiante"
+                            name="fecha_nacimiento_estudiante" required>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Datos Papá -->
+            <h3>Datos del Papá</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cedula_papa">10. Cédula del Papá</label>
+                        <input type="text" class="form-control" id="cedula_papa" name="cedula_papa" pattern="[0-9]*"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos_papa">11. Apellidos del Papá</label>
+                        <input type="text" class="form-control" id="apellidos_papa" name="apellidos_papa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombres_papa">12. Nombres del Papá</label>
+                        <input type="text" class="form-control" id="nombres_papa" name="nombres_papa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion_papa">13. Dirección del Papá</label>
+                        <input type="text" class="form-control" id="direccion_papa" name="direccion_papa" required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ocupacion_papa">14. Ocupación del Papá</label>
+                        <input type="text" class="form-control" id="ocupacion_papa" name="ocupacion_papa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono_papa">15. Teléfono/Celular del Papá</label>
+                        <input type="text" class="form-control" id="telefono_papa" name="telefono_papa" pattern="[0-9]*"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo_papa">16. Correo del Papá</label>
+                        <input type="email" class="form-control" id="correo_papa" name="correo_papa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="foto_papa">17. Foto del Papá</label>
+                        <input type="file" class="form-control" id="foto_papa" name="foto_papa">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Datos Mamá -->
+            <h3>Datos de la Mamá</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cedula_mama">18. Cédula de la Mamá</label>
+                        <input type="text" class="form-control" id="cedula_mama" name="cedula_mama" pattern="[0-9]*"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos_mama">19. Apellidos de la Mamá</label>
+                        <input type="text" class="form-control" id="apellidos_mama" name="apellidos_mama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombres_mama">20. Nombres de la Mamá</label>
+                        <input type="text" class="form-control" id="nombres_mama" name="nombres_mama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion_mama">21. Dirección de la Mamá</label>
+                        <input type="text" class="form-control" id="direccion_mama" name="direccion_mama" required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ocupacion_mama">22. Ocupación de la Mamá</label>
+                        <input type="text" class="form-control" id="ocupacion_mama" name="ocupacion_mama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono_mama">23. Teléfono/Celular de la Mamá</label>
+                        <input type="text" class="form-control" id="telefono_mama" name="telefono_mama" pattern="[0-9]*"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo_mama">24. Correo de la Mamá</label>
+                        <input type="email" class="form-control" id="correo_mama" name="correo_mama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="foto_mama">25. Foto de la Mamá</label>
+                        <input type="file" class="form-control" id="foto_mama" name="foto_mama">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+        <!-- Alertas de éxito o error -->
+        <div id="alerta" class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <!-- Aquí se mostrarán las alertas -->
         </div>
 
-        <form id="form2" action="../model/guardar_matricula.php" method="post">
-            <!-- ID del Estudiante -->
-            <div class="mb-3">
-                <label for="id_estudiante" class="form-label">6. ID del Estudiante</label>
-                <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                    class="form-control" id="id_estudiante" name="id_estudiante" required>
-            </div>
 
-            <!-- Campos de la primera fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="cedula_representante" class="form-label">7. Cédula del Representante</label>
-                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                        class="form-control" id="cedula_representante" name="cedula_representante" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="nombre_representante" class="form-label">8. Nombre del Representante</label>
-                    <input type="text" class="form-control" id="nombre_representante" name="nombre_representante"
-                        required>
-                </div>
-            </div>
-
-            <!-- Campos de la segunda fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="lugar_trabajo_representante" class="form-label">9. Lugar de Trabajo del
-                        Representante</label>
-                    <input type="text" class="form-control" id="lugar_trabajo_representante"
-                        name="lugar_trabajo_representante" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="direccion_domicilio_representante" class="form-label">10. Dirección de Domicilio del
-                        Representante</label>
-                    <input type="text" class="form-control" id="direccion_domicilio_representante"
-                        name="direccion_domicilio_representante" required>
-                </div>
-            </div>
-
-            <!-- Campos de la tercera fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="celular_representante" class="form-label">11. Celular del Representante</label>
-                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                        class="form-control" id="celular_representante" name="celular_representante" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="nombre_papa" class="form-label">12. Nombre del Papá</label>
-                    <input type="text" class="form-control" id="nombre_papa" name="nombre_papa" required>
-                </div>
-            </div>
-
-            <!-- Campos de la cuarta fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="cedula_papa" class="form-label">13. Cédula del Papá</label>
-                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                        class="form-control" id="cedula_papa" name="cedula_papa" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="lugar_trabajo_papa" class="form-label">14. Lugar de Trabajo del Papá</label>
-                    <input type="text" class="form-control" id="lugar_trabajo_papa" name="lugar_trabajo_papa" required>
-                </div>
-            </div>
-
-            <!-- Campos de la quinta fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="direccion_domicilio_papa" class="form-label">15. Dirección de Domicilio del Papá</label>
-                    <input type="text" class="form-control" id="direccion_domicilio_papa"
-                        name="direccion_domicilio_papa" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="celular_papa" class="form-label">16. Celular del Papá</label>
-                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                        class="form-control" id="celular_papa" name="celular_papa" required>
-                </div>
-            </div>
-
-            <!-- Campos de la sexta fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="nombre_mama" class="form-label">17. Nombre de la Mamá</label>
-                    <input type="text" class="form-control" id="nombre_mama" name="nombre_mama" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="cedula_mama" class="form-label">18. Cédula de la Mamá</label>
-                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                        class="form-control" id="cedula_mama" name="cedula_mama" required>
-                </div>
-            </div>
-
-            <!-- Campos de la séptima fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="lugar_trabajo_mama" class="form-label">19. Lugar de Trabajo de la Mamá</label>
-                    <input type="text" class="form-control" id="lugar_trabajo_mama" name="lugar_trabajo_mama" required>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="direccion_domicilio_mama" class="form-label">20. Dirección de Domicilio de la
-                        Mamá</label>
-                    <input type="text" class="form-control" id="direccion_domicilio_mama"
-                        name="direccion_domicilio_mama" required>
-                </div>
-            </div>
-
-            <!-- Campos de la octava fila -->
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="celular_mama" class="form-label">21. Celular de la Mamá</label>
-                    <input type="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                        class="form-control" id="celular_mama" name="celular_mama" required>
-                </div>
-            </div>
-
-            <!-- Fecha de inscripción -->
-            <div class="mb-3">
-                <label for="fecha_inscripcion" class="form-label">22. Fecha de Inscripción</label>
-                <input type="date" class="form-control" id="fecha_inscripcion" name="fecha_inscripcion" required>
-            </div>
-
-            <!-- Agrega más campos según sea necesario -->
-
-            <button type="submit" class="btn btn-primary">Registrar</button>
-        </form>
-    </div>
 
 </main>
 <?php
 include_once "./header.php";
 ?>
-    <script src="../js/formulario2.js"></script> <!-- Ajusta la ruta según tu estructura de archivos -->
+<script src="../js/formulario2.js"></script> <!-- Ajusta la ruta según tu estructura de archivos -->
 
 <!-----------------------------Fin del main------------------------------->
 
