@@ -86,7 +86,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
                 <th>Cedula</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Edad</th>
+                <th>fecha de nacimiento </th>
                 <th>Grado</th>
                 <th>Representante</th>
                 <th>Dir.domicilio </th>
@@ -97,7 +97,62 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
             </tr>
         </thead>
         <tbody>
-           
+            <?php
+            $conn = conectarBaseDeDatos();
+            $sql = "SELECT 
+            e.id,
+            e.cedula,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            g.grado,
+            r.apellidos_nombres,
+            r.direccion,
+            r.telefono
+        FROM estudiante e
+        JOIN grado g ON e.id = g.id_estudiante
+        JOIN representante r ON e.ID = r.ID_estudiante;";
+            $result = $conn->query($sql);
+            if (!$result) {
+                echo "Error al obtener los datos: " . $conn->errorInfo()[2];
+                exit;
+            }
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo '<tr>
+                <td>' . $row['id'] . '</td>
+                <td>' . $row['cedula'] . '</td>
+                <td>' . $row['nombres'] . '</td>
+                <td>' . $row['apellidos'] . '</td>
+                <td>' . $row['fecha_nacimiento'] . '</td>
+                <td>' . $row['grado'] . '</td>
+                <td>' . $row['apellidos_nombres'] . '</td>
+
+                <td>' . $row['direccion'] . '</td>
+                <td>' . $row['telefono'] . '</td>
+                <td>';
+                echo '<div style="display: flex; align-items: center;" >
+                <form action="" method="post" id="actForm">
+                    <input type="hidden" name="id" value="' . $row['id'] . '">
+                    <button id="actualizar" class="hand-cursor" type="submit" value="' . $row['id'] . '" style="background-color: var(--c);">
+                    <i class="fas fa-pen-to-square" style="font-size: 28px; color: #167bae;"></i>
+                    </button>
+                </form>';
+                echo '<form id="form_' . $row['id'] . '" action="../controller/reporte_estudiantes.php" method="post" target="_blank">
+                <button class="hand-cursor" type="submit" name="generar_reporte" value="' . $row['id'] . '" style="background-color: var(--c);">
+                    <i class="fas fa-print" style="font-size: 28px; color: #167bae; margin-left:10px;"></i>
+                </button>
+            </form>
+            <form action="" method="post" id="eliminarForm">
+                <input type="hidden" name="id" value="' . $row['id'] . '">
+                <button class="hand-cursor" type="button" onclick="alerta_eliminar(' . $row['id'] . ')" style="background-color: var(--c);">
+                    <i class="fas fa-trash-alt" style="font-size: 28px; color: #167bae; margin-left:10px;"></i>
+                </button>
+            </form>
+        </div>
+                </td>';
+            }
+            ?>
+
         </tbody>
     </table>
 
@@ -125,3 +180,24 @@ include_once "./header.php";
             });
         });
     </script>
+
+<script>
+    // JavaScript to handle button click and submit the form
+    document.addEventListener('DOMContentLoaded', function () {
+        const reportButtons = document.querySelectorAll('button[name="generar_reporte"]');
+        reportButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita la acción de envío por defecto del botón
+
+                const estudianteId = this.value;
+                const form = document.getElementById('form_' + estudianteId); // Obtiene el formulario correspondiente por ID
+                const input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', 'generar_reporte');
+                input.setAttribute('value', estudianteId);
+                form.appendChild(input);
+                form.submit();
+            });
+        });
+    });
+</script>
