@@ -158,17 +158,17 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
             e.cedula,
             e.nombres,
             e.apellidos,
-            e.sector,
+            e.direccion,
             g.grado,
-            m.apellidos_nombres,
-            m.telefono,
-            d.discapacidad
+            CASE WHEN e.condicion = 1 THEN 'SI' ELSE 'NO' END AS discapacidad,
+            p.cedula,
+            p.apellidos_nombres,
+            p.telefono
         FROM estudiante e
-        JOIN grado g ON e.id = g.id_estudiante
-        JOIN mama m ON e.ID = m.ID_estudiante
-        JOIN discapacidad d ON e.ID = d.ID_estudiante 
-        WHERE e.foto IS NULL;
-        ";
+        JOIN grado g ON e.id_grado = g.id
+        JOIN persona p ON e.Id = p.id_estudiante
+        JOIN rol r ON p.Id = r.id_persona
+        WHERE r.rol = 'representante' AND e.foto IS NULL;";
             $result = $conn->query($sql);
             if (!$result) {
                 echo "Error al obtener los datos: " . $conn->errorInfo()[2];

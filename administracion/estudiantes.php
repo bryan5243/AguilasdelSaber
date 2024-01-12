@@ -141,12 +141,14 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
             e.apellidos,
             e.fecha_nacimiento,
             g.grado,
-            r.apellidos_nombres,
-            r.direccion,
-            r.telefono
+            P.apellidos_nombres,
+            P.direccion,
+            P.telefono
         FROM estudiante e
-        JOIN grado g ON e.id = g.id_estudiante
-        JOIN representante r ON e.ID = r.ID_estudiante;";
+        JOIN grado g ON e.id_grado = g.id
+JOIN persona p ON e.Id = p.id_estudiante
+JOIN rol r ON  p.Id= r.id_persona  
+WHERE r.rol = 'representante';";
             $result = $conn->query($sql);
             if (!$result) {
                 echo "Error al obtener los datos: " . $conn->errorInfo()[2];
