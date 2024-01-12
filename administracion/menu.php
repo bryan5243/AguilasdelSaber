@@ -7,12 +7,26 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
 
 ?>
 
+<style>
+    .logo {
+        display: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        border: 0px solid #ccc;
+        border-radius: 8px;
+        padding: 0px;
+    }
+</style>
+
 <div class="container">
     <aside>
         <div class="top">
-            <div class="logo">
-                <img src="../img/logo23.png">
-                <h2 class="logo-name"><span class="divina">LAS AGUILAS</span> <span class="mise">DEL SABER</span></h2>
+            <div class="card">
+                <div class="logo"><img src="../img/logo23.png"></div>
+                <h2 class="logo-name"><span class="divina">LAS ÁGUILAS</span><span class="mise">DEL SABER</span></h2>
             </div>
             <div class="close" id="close-btn">
                 <span class="material-icons-sharp">close</span>
@@ -32,6 +46,12 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
                 </span>
                 <h3>Matricula</h3>
             </a>
+            <a href="#">
+                <span class="material-symbols-outlined">
+                    group_add
+                </span>
+                <h3>Matriculados</h3>
+            </a>
 
             <a href="estudiantes.php">
                 <span class="material-symbols-outlined">
@@ -39,6 +59,27 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
                 </span>
                 <h3>Estudiantes</h3>
             </a>
+            <a href="#">
+                <span class="material-symbols-outlined">
+                    group_add
+                </span>
+                <h3>Asignar Grados</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-outlined">
+                    group_add
+                </span>
+                <h3>Asignar Períodos</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-outlined">
+                    group_add
+                </span>
+                <h3>Períodos Culminados</h3>
+            </a>
+
+
+
 
             <a href="#">
                 <span class="material-symbols-outlined">
@@ -47,7 +88,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
                 <h3>Opciones</h3>
             </a>
 
-            <a href="../model/cerrar_session.php"  class="logout-button">
+            <a href="../model/cerrar_session.php" class="logout-button">
                 <span class="material-icons-sharp">logout</span>
                 <h3>Salir</h3>
             </a>

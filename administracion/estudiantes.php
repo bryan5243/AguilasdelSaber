@@ -65,7 +65,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
     }
 
     @media screen and (max-width:768px) {
-      
+
         aside {
             position: fixed;
             top: 0;
@@ -86,7 +86,6 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
         cursor: pointer;
     }
 </style>
-<link rel="stylesheet" href="../src/datables/DataTables-1.13.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="../src/datables//Responsive-2.4.1/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
     integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
@@ -94,6 +93,20 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha384-..." crossorigin="anonymous">
+
+
+<!-- //link de botones  -->
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+<!-- DataTables Buttons CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 <main>
 
     <div class="date" style="margin-bottom: 50px;">
@@ -188,23 +201,56 @@ include_once "./header.php";
 <script src="../js/menu.js"></script>
 
 
-<script src="../src/datables/jquery-3.5.1.js"></script>
 
-<script src="../src/datables/DataTables-1.13.4/js/jquery.dataTables.min.js"></script>
+
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<!-- DataTables Buttons -->
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+
+
+
+
+
 <script src="../src/datables/Responsive-2.4.1/js/dataTables.responsive.min.js"></script>
 
 <script>
     $(document).ready(function () {
-        var table = $('#example').DataTable({
+        $('#example').DataTable({
+            dom: 'Bfrtip',
             responsive: true,
             autoWidth: true,
             language: {
                 url: '../src/datables/español.json',
             },
+            buttons: [
+
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fa fa-file-excel-o"></i>',
+                    titleAttr: 'Excel'
+                },
+
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa fa-file-pdf-o"></i>',
+                    titleAttr: 'PDF'
+                }
+            ]
         });
     });
 </script>
-
 <script>
     // JavaScript to handle button click and submit the form
     document.addEventListener('DOMContentLoaded', function () {

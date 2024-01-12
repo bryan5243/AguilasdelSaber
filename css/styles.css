@@ -529,6 +529,11 @@ main .recent-order a {
 
 
 
+
+
+
+
+
 @media screen and (max-width:1600px) {
     .container {
         display: grid;
@@ -542,6 +547,21 @@ main .recent-order a {
 
 
 }
+
+@media screen and (max-width:1440px) {
+    .container {
+        display: grid;
+        width: 100%;
+        margin: 1.4rem auto 0;
+        gap: 1.8rem;
+        grid-template-columns: 14rem 85rem;
+    }
+
+
+
+
+}
+
 
 
 @media screen and (max-width:1366px) {

@@ -1,5 +1,5 @@
 <?php
-include_once("../model/validacion.php"); 
+include_once("../model/validacion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,9 @@ include_once("../model/validacion.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login</title>
+    <link rel="icon" href="../img/logo23.ico" type="image/x-icon">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
 
@@ -90,7 +92,7 @@ include_once("../model/validacion.php");
             <button style="border-radius: 10px;background: #ec1d17;"
                 class="btn  text-white w-100 mt-4 fw-semibold shadow-sm" type="submit" name="btningresar"
                 value="Iniciar Sesion">
-              INGRESAR
+                INGRESAR
             </button>
 
         </form>
