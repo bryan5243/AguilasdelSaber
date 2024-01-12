@@ -712,7 +712,7 @@ main .recent-order a {
     .right .top .theme-toggler {
         width: 4.4rem;
         position: absolute;
-        left:65%;
+        left: 65%;
 
     }
 
@@ -722,7 +722,7 @@ main .recent-order a {
     }
 
     .profile-photo {
-margin-right: 20px;
+        margin-right: 20px;
 
     }
 

@@ -78,7 +78,15 @@ function generateReport($estudianteId)
     $conn = conectarBaseDeDatos();
     $pdf->Ln(15);
 
-    $sql = "SELECT * FROM grado WHERE id = :estudianteId";
+    $sql = "SELECT 
+    m.numero,
+    p.periodo,
+    g.grado
+    FROM
+    matricula m join periodo p on m.Id=p.id_matricula 
+    JOIN estudiante e on e.Id=m.id_estudiante 
+    join grado g on e.id_grado=g.id
+     WHERE e.id = :estudianteId";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':estudianteId', $estudianteId, PDO::PARAM_INT);
     $stmt->execute();
@@ -86,7 +94,7 @@ function generateReport($estudianteId)
     $pdf->SetX(30); // Ajusta la posición horizontal del texto según sea necesario
 
     $pdf->SetFont('Arial', 'B', 18); // Regular font style
-    $pdf->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', mb_strtoupper($gradoDatos['grado']) . '-2023'), 0, 1, 'C');
+    $pdf->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', mb_strtoupper($gradoDatos['grado']) . '   '.mb_strtoupper($gradoDatos['periodo']) ), 0, 1, 'C');
 
 
 
@@ -169,43 +177,43 @@ function generateReport($estudianteId)
 
 
     // Verifica si se encontró el estudiante
-if ($estudianteDatos) {
-    // Obtiene la imagen en formato blob
-    $imagenBlob = $estudianteDatos['foto'];
+    if ($estudianteDatos) {
+        // Obtiene la imagen en formato blob
+        $imagenBlob = $estudianteDatos['foto'];
 
-    // Crea una imagen desde los datos blob
-    $imagen = imagecreatefromstring($imagenBlob);
+        // Crea una imagen desde los datos blob
+        $imagen = imagecreatefromstring($imagenBlob);
 
-    // Crea una imagen temporal de 200x100 px
-    $imagenTemporal = imagecreatetruecolor(200, 100);
+        // Crea una imagen temporal de 200x100 px
+        $imagenTemporal = imagecreatetruecolor(200, 100);
 
-    // Redimensiona la imagen original a 200x100 px
-    imagecopyresampled($imagenTemporal, $imagen, 0, 0, 0, 0, 200, 100, imagesx($imagen), imagesy($imagen));
+        // Redimensiona la imagen original a 200x100 px
+        imagecopyresampled($imagenTemporal, $imagen, 0, 0, 0, 0, 200, 100, imagesx($imagen), imagesy($imagen));
 
-    // Guarda la imagen temporal como archivo
-    $rutaTemporal = 'temp_image.jpg';
-    imagejpeg($imagenTemporal, $rutaTemporal);
+        // Guarda la imagen temporal como archivo
+        $rutaTemporal = 'temp_image.jpg';
+        imagejpeg($imagenTemporal, $rutaTemporal);
 
-    // Establecer la posición XY para la imagen
-    $column3X = 150; // Ajusta la posición X según tus necesidades
-    $pdf->SetXY($column3X, $pdf->GetY());
+        // Establecer la posición XY para la imagen
+        $column3X = 150; // Ajusta la posición X según tus necesidades
+        $pdf->SetXY($column3X, $pdf->GetY());
 
-    // Calcula las nuevas dimensiones reduciendo en un 20%
-    $nuevaAnchura = 0.8 * 50;
-    $nuevaAltura = 0.8 * 50;
+        // Calcula las nuevas dimensiones reduciendo en un 20%
+        $nuevaAnchura = 0.8 * 50;
+        $nuevaAltura = 0.8 * 50;
 
-    // Insertar la imagen en el PDF un 20% más pequeña
-    $pdf->Image($rutaTemporal, $pdf->GetX(), $pdf->GetY(), $nuevaAnchura, $nuevaAltura);
+        // Insertar la imagen en el PDF un 20% más pequeña
+        $pdf->Image($rutaTemporal, $pdf->GetX(), $pdf->GetY(), $nuevaAnchura, $nuevaAltura);
 
-    // Elimina el archivo temporal
-    unlink($rutaTemporal);
-}
-
-
+        // Elimina el archivo temporal
+        unlink($rutaTemporal);
+    }
 
 
 
-    $sql = "SELECT * FROM papa WHERE id = :estudianteId";
+
+
+    $sql = "SELECT * FROM persona p JOIN rol r on p.Id=r.id_persona where r.rol='papa'; AND id = :estudianteId ";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':estudianteId', $estudianteId, PDO::PARAM_INT);
     $stmt->execute();
@@ -271,42 +279,42 @@ if ($estudianteDatos) {
     $pdf->Cell(50, 8, '', 0, 1); // Alineado a la izquierda con salto de línea
     $pdf->SetXY($column3X, $posicionTituloY); // Establecer posición debajo del título para la columna 2
 
- 
+
     if ($papaDatos) {
         // Obtiene la imagen en formato blob
         $imagenBlobpapa = $papaDatos['foto'];
-    
+
         // Crea una imagen desde los datos blob
         $imagenpapa = imagecreatefromstring($imagenBlobpapa);
-    
+
         // Crea una imagen temporal de 200x100 px
         $imagenTemporalpapa = imagecreatetruecolor(200, 100);
-    
+
         // Redimensiona la imagen original a 200x100 px
         imagecopyresampled($imagenTemporalpapa, $imagenpapa, 0, 0, 0, 0, 200, 100, imagesx($imagenpapa), imagesy($imagenpapa));
-    
+
         // Guarda la imagen temporal como archivo
         $rutaTemporalpapa = 'temp_image_papa.jpg';
         imagejpeg($imagenTemporalpapa, $rutaTemporalpapa);
-    
+
         // Establecer la posición XY para la imagen
         $column3X = 150; // Ajusta la posición X según tus necesidades
         $pdf->SetXY($column3X, $pdf->GetY());
-    
+
         // Calcula las nuevas dimensiones reduciendo en un 20%
         $nuevaAnchura = 0.8 * 50;
         $nuevaAltura = 0.8 * 50;
-    
+
         // Insertar la imagen en el PDF un 20% más pequeña
         $pdf->Image($rutaTemporalpapa, $pdf->GetX(), $pdf->GetY(), $nuevaAnchura, $nuevaAltura);
-    
+
         // Elimina el archivo temporal
         unlink($rutaTemporalpapa);
     }
 
 
 
-    $sql = "SELECT * FROM mama WHERE id = :estudianteId";
+    $sql = "SELECT * FROM persona p JOIN rol r on p.Id=r.id_persona where r.rol='mama'; AND id = :estudianteId ";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':estudianteId', $estudianteId, PDO::PARAM_INT);
     $stmt->execute();
@@ -376,37 +384,37 @@ if ($estudianteDatos) {
     if ($mamaDatos) {
         // Obtiene la imagen en formato blob
         $imagenBlobmama = $mamaDatos['foto'];
-    
+
         // Crea una imagen desde los datos blob
         $imagenmama = imagecreatefromstring($imagenBlobmama);
-    
+
         // Crea una imagen temporal de 200x100 px
         $imagenTemporalmama = imagecreatetruecolor(200, 100);
-    
+
         // Redimensiona la imagen original a 200x100 px
         imagecopyresampled($imagenTemporalmama, $imagenmama, 0, 0, 0, 0, 200, 100, imagesx($imagenmama), imagesy($imagenmama));
-    
+
         // Guarda la imagen temporal como archivo
         $rutaTemporalmama = 'temp_image_mama.jpg';
         imagejpeg($imagenTemporalmama, $rutaTemporalmama);
-    
+
         // Establecer la posición XY para la imagen
         $column3X = 150; // Ajusta la posición X según tus necesidades
         $pdf->SetXY($column3X, $pdf->GetY());
-    
+
         // Calcula las nuevas dimensiones reduciendo en un 20%
         $nuevaAnchura = 0.8 * 50;
         $nuevaAltura = 0.8 * 50;
-    
+
         // Insertar la imagen en el PDF un 20% más pequeña
         $pdf->Image($rutaTemporalmama, $pdf->GetX(), $pdf->GetY(), $nuevaAnchura, $nuevaAltura);
-    
+
         // Elimina el archivo temporal
         unlink($rutaTemporalmama);
     }
 
 
-    $sql = "SELECT * FROM representante WHERE id = :estudianteId";
+    $sql = "SELECT * FROM persona p JOIN rol r on p.Id=r.id_persona where r.rol='representante'; AND id = :estudianteId ";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':estudianteId', $estudianteId, PDO::PARAM_INT);
     $stmt->execute();
@@ -474,31 +482,31 @@ if ($estudianteDatos) {
     if ($representanteDatos) {
         // Obtiene la imagen en formato blob
         $imagenBlobrepre = $representanteDatos['foto'];
-    
+
         // Crea una imagen desde los datos blob
         $imagenrepre = imagecreatefromstring($imagenBlobrepre);
-    
+
         // Crea una imagen temporal de 200x100 px
         $imagenTemporalrepre = imagecreatetruecolor(200, 100);
-    
+
         // Redimensiona la imagen original a 200x100 px
         imagecopyresampled($imagenTemporalrepre, $imagenrepre, 0, 0, 0, 0, 200, 100, imagesx($imagenmama), imagesy($imagenmama));
-    
+
         // Guarda la imagen temporal como archivo
         $rutaTemporalrepre = 'temp_image_repre.jpg';
         imagejpeg($imagenTemporalrepre, $rutaTemporalrepre);
-    
+
         // Establecer la posición XY para la imagen
         $column3X = 150; // Ajusta la posición X según tus necesidades
         $pdf->SetXY($column3X, $pdf->GetY());
-    
+
         // Calcula las nuevas dimensiones reduciendo en un 20%
         $nuevaAnchura = 0.8 * 50;
         $nuevaAltura = 0.8 * 50;
-    
+
         // Insertar la imagen en el PDF un 20% más pequeña
         $pdf->Image($rutaTemporalrepre, $pdf->GetX(), $pdf->GetY(), $nuevaAnchura, $nuevaAltura);
-    
+
         // Elimina el archivo temporal
         unlink($rutaTemporalrepre);
     }

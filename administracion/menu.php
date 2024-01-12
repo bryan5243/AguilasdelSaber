@@ -40,7 +40,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
             </a>
 
 
-            <a href="matricula.php">
+            <a href="matriculacion.php">
                 <span class="material-symbols-outlined">
                     group_add
                 </span>

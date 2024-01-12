@@ -1,0 +1,35 @@
+
+:root{
+  --color-light: rgba(132, 139, 200, 0.18);
+
+}
+
+.tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+  }
+  .dark-theme-variables{
+    --color-light:rgba(0,0,0,0.4);
+
+  }
+
+  .tab {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .tab.active {
+    background-color:var(--color-light);
+    box-shadow: 0 0 5px 0 rgba(0, 123, 255, 0.5);
+
+  }
+
+  /* Estilos del contenido */
+  .tab-content {
+    margin-top: 10px;
+    padding: 10px;
+  }

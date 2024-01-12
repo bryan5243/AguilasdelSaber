@@ -1,0 +1,170 @@
+:root {
+    --color-dark-variant: #222425;
+    --border-before-color: rgba(17, 16, 16, 0.39);
+
+}
+
+.dark-theme-variables {
+    --color-dark-variant: #a3bdcc;
+    --border-before-color: rgba(254, 251, 251, 0.39);
+
+}
+
+.form {
+    --width-of-input: 200px;
+    --width-max-input: 1050px;
+    --border-height: 1px;
+    color: var(--border-before-color);
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+    position: relative;
+    max-width: var(--width-max-input);
+
+    width: var(--width-of-input);
+}
+
+
+/* styling of Input */
+
+.input {
+    color: var(--color-dark-variant);
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+/* styling of animated border */
+.input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+}
+
+/* Hover on Input */
+input:hover {
+    background: var(--input-hovered-color);
+}
+
+input:focus {
+    outline: none;
+}
+
+/* here is code of animated border */
+input:focus~.input-border {
+    width: 100%;
+}
+
+/* === if you want to do animated border on typing === */
+/* remove input:focus code and uncomment below code */
+/* input:valid ~ .input-border{
+     width: 100%;
+   } */
+
+
+
+.form-container {
+    display: flex;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.form {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.form:first-child {
+    margin-left: 0;
+}
+
+.input {
+    color: var(--color-dark-variant);
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+.input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s;
+}
+
+.input:focus~.input-border {
+    width: 100%;
+}
+
+textarea.input {
+    resize: vertical;
+}
+
+@media screen and (max-width: 480px) {
+    .form {
+        flex: 1 1 100%;
+        margin-right: 0;
+    }
+
+
+    .form:first-child {
+        margin-left: 0;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .input-border {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+}
+
+
+input[type="radio"] {
+    /* Ocultar los botones de radio originales */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Establecer dimensiones y estilos personalizados */
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    outline: none;
+    /* Establecer colores para el estado activo y el estado activo seleccionado */
+}
+
+input[type="radio"]:checked {
+    /* Estilos para el botón de radio seleccionado */
+    background-color: var(--color-dark-variant);
+}
+
+@media screen and (max-width: 480px) {
+
+
+    /* Estilos específicos para dispositivos móviles */
+    input[type="radio"] {
+        width: 8px;
+        height: 8px;
+        /* Otros estilos personalizados para dispositivos móviles si los necesitas */
+    }
+}

@@ -1,0 +1,48 @@
+/* Estilo del combobox utilizando las variables */
+
+/* responsive */
+
+.custom-file-input {
+  display: none;
+}
+
+.custom-file-label {
+  background-color: #159f93;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.custom-file-label:hover {
+  background-color: #159f93;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.custom-tab-label {
+  background-color: #159f93;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-tab-label:hover {
+  background-color: #12857e;
+}
+
+
+/* Ajustes para elementos select */
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+}

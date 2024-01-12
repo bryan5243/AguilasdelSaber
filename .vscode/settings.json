@@ -7,5 +7,11 @@
     },
     "[javascript]": {
         "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[plaintext]": {
+        "editor.defaultFormatter": null
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
     }
 }

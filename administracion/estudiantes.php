@@ -143,12 +143,15 @@ if (!isset($_SESSION['id']) || empty($_SESSION['nombre']) || empty($_SESSION['ro
             g.grado,
             P.apellidos_nombres,
             P.direccion,
-            P.telefono
-        FROM estudiante e
-        JOIN grado g ON e.id_grado = g.id
-JOIN persona p ON e.Id = p.id_estudiante
-JOIN rol r ON  p.Id= r.id_persona  
-WHERE r.rol = 'representante';";
+            P.telefono,
+            pe.estado
+            FROM estudiante e
+            JOIN grado g ON e.id_grado = g.id
+            JOIN persona p ON e.Id = p.id_estudiante
+            JOIN rol r ON  p.Id= r.id_persona  
+            JOIN matricula m on e.Id=m.id_estudiante
+            JOIN periodo pe on m.Id=pe.id_matricula
+            WHERE r.rol = 'representante' AND pe.estado=1;";
             $result = $conn->query($sql);
             if (!$result) {
                 echo "Error al obtener los datos: " . $conn->errorInfo()[2];
@@ -240,13 +243,14 @@ include_once "./header.php";
 
                 {
                     extend: 'excelHtml5',
-                    text: '<i class="fa fa-file-excel-o"></i>',
+                    text: '<i class="fa fa-file-excel-o" style="font-size: 30px;"></i>',
                     titleAttr: 'Excel'
+
                 },
 
                 {
                     extend: 'pdfHtml5',
-                    text: '<i class="fa fa-file-pdf-o"></i>',
+                    text: '<i class="fa fa-file-pdf-o" style="width:20px;height:20px"></i>',
                     titleAttr: 'PDF'
                 }
             ]
