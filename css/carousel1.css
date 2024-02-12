@@ -1,0 +1,25 @@
+.testimonial {
+    
+    margin: 10px auto; /* Auto en el margen horizontal centrará la caja */
+    width: 780px; /* Ancho fijo de la caja */
+    height: 780px; /* Altura fija de la caja */
+    position: relative;
+    display: flex; /* Usa flexbox para centrar los elementos */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.testimonial img {
+    max-width: 100%; /* Ajusta el ancho máximo de la imagen al 100% */
+    max-height: 100%; /* Ajusta la altura máxima de la imagen al 100% */
+    object-fit: cover;
+}
+
+/* Ajustes para responsividad */
+@media (max-width: 768px) {
+    .testimonial {
+        width: 100%; /* Ancho 100% en dispositivos más pequeños */
+        height: auto; /* Altura automática para mantener la proporción */
+    }
+}
+

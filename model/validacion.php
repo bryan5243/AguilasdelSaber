@@ -24,8 +24,14 @@ if (!empty($_POST["btningresar"])) {
                     $_SESSION["nombre"] = $result['usuario'];
                     $_SESSION["rol"] = $result['rol'];
 
-                    header("Location: dashboard.php");
-                    exit();
+                    if ($result['rol'] == 'disenador') {
+                        // Redirigir al diseñador a una página específica
+                        header("Location: ../web2/administrativo.php");
+                    } else {
+                        // Redirigir a la página principal del dashboard
+                        header("Location: dashboard.php");
+                    }
+                    exit(); // Salir del script después de redireccionar
                 } else {
                     mostrarAlerta("Acceso no permitido", "El acceso no está permitido en este momento.");
                 }

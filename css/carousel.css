@@ -1,0 +1,72 @@
+.testimonial-item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+    max-width: 500px; /* Ajusta a tu preferencia para el ancho de los testimonios */
+    padding: 20px;
+    position: relative;
+    justify-content: space-between; /* Distribuye el espacio verticalmente */
+    height: 230px; /* Altura fija para todas las cajas de testimonio */
+    display: flex; /* Establece los elementos internos en un contenedor flex */
+    flex-direction: column; /* Organiza los elementos internos en una columna */
+    justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+}
+
+.testimonial-quote {
+    font-style: italic;
+    /* Asegúrate de que la altura de .testimonial-quote no sea demasiado grande */
+}
+
+.testimonial-profile {
+    display: flex;
+    align-items: center; /* Alinea la imagen y el texto del perfil verticalmente */
+    flex: 0 0 auto; /* Esto previene que el perfil crezca o encoja */
+    margin-top: auto; /* Empuja el perfil hacia abajo si hay espacio */
+    margin-bottom: auto; /* Empuja el perfil hacia arriba si hay espacio */
+}
+.profile-info {
+    flex-grow: 1; /* Esto permitirá que el contenido de texto ocupe el espacio restante */
+    text-align: left; /* Alinea el texto a la izquierda */
+    padding-left: 20px; /* Esto añade un poco de espacio antes del nombre, ajusta según necesites */
+}
+
+/* Asegúrate de que tus media queries también respeten la altura fija si es necesario */
+@media (max-width: 768px) {
+    .testimonial-item {
+        max-width: 10%; /* Utiliza todo el ancho disponible */
+        margin: 20px 10px; /* Ajusta el margen como sea necesario */
+        height: auto; /* O puedes mantener una altura fija según tu diseño */
+    }
+}
+
+/* Estilos para móviles */
+@media (max-width: 576px) {
+    .testimonial-item {
+        max-width: 100%; /* Utiliza todo el ancho disponible */
+        margin: 20px 10px; /* Reduce el margen si es necesario */
+        height: auto; /* O puedes mantener una altura fija según tu diseño */
+    }
+}
+
+.testimonial-profile img {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin-bottom: 0; /* Elimina cualquier margen inferior que pueda estar empujando el texto hacia abajo */
+
+}
+
+/* Ajustes para responsividad */
+@media (max-width: 768px) {
+    .testimonial-profile img {
+        width: 60px; /* Ancho más pequeño para tabletas */
+        height: 60px; /* Igual al ancho para mantener la forma circular */
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonial-profile img {
+        width: 50px; /* Ancho más pequeño para móviles */
+        height: 50px; /* Igual al ancho para mantener la forma circular */
+    }
+}

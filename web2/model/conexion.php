@@ -1,9 +1,8 @@
 <?php
-function conectarBaseDeDatos()
-{
+
     $host = 'localhost';
     $port = '3306'; // Puerto por defecto de MySQL
-    $dbname = 'usuarios'; // Nombre de la base de datos MySQL
+    $dbname = 'pagina'; // Nombre de la base de datos MySQL
     $user = 'root'; // Nombre de usuario de MySQL
     $password = ''; // Contraseña de MySQL
 
@@ -17,5 +16,4 @@ function conectarBaseDeDatos()
         exit(); // Si hay un error, termina el script
     }
     return $pdo;
-}
 ?>
